@@ -943,7 +943,7 @@ void bvh_cuda_forward(at::Tensor triangles, at::Tensor *collision_tensor_ptr,
 
   // Construct the bvh tree
   AT_DISPATCH_FLOATING_TYPES(
-      triangles.type(), "bvh_tree_building", ([&] {
+      triangles.scalar_type(), "bvh_tree_building", ([&] {
         thrust::device_vector<BVHNode<scalar_t>> leaf_nodes(num_triangles);
         thrust::device_vector<BVHNode<scalar_t>> internal_nodes(num_triangles -
                                                                 1);
